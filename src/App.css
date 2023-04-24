@@ -124,3 +124,18 @@ flex: 1;
   background-color:#fff;
   border-color: black
 }
+
+.todo-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+}
+
+.margin-left{
+  margin-left: 80px !important;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
