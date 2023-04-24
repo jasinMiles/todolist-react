@@ -125,6 +125,24 @@ flex: 1;
   border-color: black
 }
 
+#btn-four {
+  width: 167px;
+  height: 44px;
+  background: #38D98C;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#btn-five {
+  width: 167px;
+  height: 44px;
+  background: #d93838;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
 .todo-button {
   padding: 10px;
   font-size: 16px;
@@ -138,4 +156,74 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+h2, .form-style{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#submit-button{
+  width: 300px;
+  height: 44px;
+  background: #389Bd9;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+#submit-button-local{
+  width: 270px;
+  height: 44px;
+  background: #389Bd9;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+.line-break{
+  display: flex;
+  margin-top: 10vh;
+  height: 0px;
+  border: 1px solid #b2beb5;
+}
+
+.btns{
+  position: relative;
+  display: flex;
+  gap: 50px;
+  top: 4.5vh;
+  padding-top: 0%;
+}
+
+.todo-style{
+  position: relative;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.form-todo{
+  padding-right: 150px;
+}
+span.mx-auto {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
 }
