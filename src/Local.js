@@ -1,20 +1,11 @@
 import React, {useState} from 'react';
-//import { Connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import { FontAwesomeIcon, fontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import {
-//  faCircleCheck, faPen, faTrashCan
-//} from '@fortawesome/free-solid-svg-icons'
 import './App.css';
-
 
 function Client() {
 
   // Tasks (ToDo List) state
-  const [toDo, setToDo] = useState([
-   //{id: 1, title: "Task 1", status: false},
-   //{id: 2, title: "Task 2", status: false}
-  ]);
+  const [toDo, setToDo] = useState([]);
 
   // Temp State
   const [newTask, setNewTask] = useState('');
@@ -36,16 +27,6 @@ function Client() {
     setToDo(newTasks);
    }
 
-   // mark task as done or completed
-  // const markDone = (id) => {
-    //let newTask = toDo.map( task => {
-      //if( task.id === id ) {
-        //return ({ ...task, status: !task.status })
-      //}
-      //return task;
-    //})
-    //setToDo(newTask);
-   //}
 
    // cancel update
    const cancelUpdate = () => {

@@ -9,17 +9,17 @@ function  Home() {
   <Link to="/Local">
     <button
     className="btn-one">
-        Button 1</button>
+        LOCAL</button>
   </Link>
   <Link to="/Global">
     <button
     className="btn-two">
-        Button 2</button>
+        GLOBAL</button>
   </Link>
   <Link to="/server">
     <button
     className="btn-three">
-        Button 3</button>
+        SERVER</button>
   </Link>
 </div>
 )

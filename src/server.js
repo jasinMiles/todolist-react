@@ -3,10 +3,11 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function TodoList() {
+function TodoList() { 
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [updateTodo, setUpdateTodo] = useState("")
+  const [updateTodo, setUpdateTodo] = useState("");
+ 
   
   
   useEffect(() => {
@@ -31,13 +32,68 @@ function TodoList() {
       console.error(error);
     }
   }
-  async function EditTodo(id) {
-    axios.put(`https://todo-app-nyce.onrender.com/api/v1/Todo/${id}`, { todo: updateTodo })
-        setUpdateTodo("")
-        fetchTodos()
-        .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+
+const cancelUpdate = async () => {
+  try {
+    // Re-fetch the current task data from the API
+    const response = await axios.get("https://todo-app-nyce.onrender.com/api/v1/Todo/${id}");
+    const currentTask = response.data;
+
+    // Update the state variable with the current task data
+    setUpdateTodo(currentTask);
+
+    // Hide the editing form by setting the updateData state variable to null or an empty object, depending on your implementation
+    // setUpdateData(null);
+    // or
+    // setUpdateData({});
+  } catch (error) {
+    console.error(error);
   }
+};
+
+
+const changeTask = (e) => {
+  // Create a new task object with the updated title
+  const updatedTask = {
+    ...updateTodo, // Keep the existing properties of the task
+    id: e.target.value // Update the title property with the new value
+  };
+
+  // Update the state variable with the new task object
+  setUpdateTodo(updatedTask);
+
+  // Send a PUT request to update the task data in the API
+  axios.put("https://todo-app-nyce.onrender.com/api/v1/Todo/${id}", updatedTask)
+    .then(response => {
+      console.log('Task updated successfully:', response.data);
+    })
+    .catch(error => {
+      console.error('Error updating task:', error);
+    });
+};
+
+const updateTask = async () => {
+  try {
+    // Send a PUT request to update the task data in the API
+    const response = await axios.put('https://todo-app-nyce.onrender.com/api/v1/Todo/${id}', updateTodo);
+    const updatedTask = response.data;
+
+    // Update the task data in the state variable by mapping over the existing task list and replacing the updated task data for the matching task ID
+    const updatedTaskList = todos.map(task => {
+      if (todos.id === updatedTask.id) {
+        return updatedTask;
+      } else {
+        return task;
+      }
+    });
+
+    // Update the state variables to reflect the updated task data and close the editing form
+    setTodos(updatedTaskList);
+    setUpdateTodo(null);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   async function deleteTodo(id) {
     try {
@@ -49,11 +105,31 @@ function TodoList() {
   }
   
         console.log(todos); 
+
   return (
     
     <div className="Container App">
       <h2> Server | To-Do List</h2>
       <br></br>
+      <div className='row'>
+    <div className='col'>
+      <input
+        value={updateTodo && updateTodo.id}
+        onChange={(e) => changeTask(e)}
+        className='form-control form-control-lg'
+      />
+    </div>
+    <div className='col-auto'>
+      <button onClick={updateTask} className='btn btn-lg btn-success mr-2'>
+        Update
+      </button>
+      <button onClick={cancelUpdate} className='btn btn-lg btn-warning'>
+        Cancel
+      </button>
+    </div>
+  </div>
+
+
       <div></div>
       <div className='form-style'>
         <div className='col'>
@@ -88,18 +164,31 @@ function TodoList() {
             {todo && todo.todo}{" "}
             </div>
             <span className="mx-auto col-10 ">
-          <button
-                       title="Edit"
-                       id="btn-four"
-                       className="btn btn-lg btn-success"
-                       onClick={() =>
-                         EditTodo(todo.id)
-                       }
-                       
-                     >
-                       Edit
-                     </button>
-                     
+          
+                      <div>
+                      {todos.status ? null : (
+  <button
+    title="Edit"
+    onClick={() => {
+      axios.put("https://todo-app-nyce.onrender.com/api/v1/Todo/${id}", {
+        id: todo.id,
+        status: todo.status ? true : false,
+      })
+      .then(response => {
+        // handle success response
+        console.log('Task updated successfully:', response.data);
+      })
+      .catch(error => {
+        // handle error response
+        console.error('Error updating task:', error);
+      });
+    }}
+    className='btn btn-lg btn-success'
+    id='btn-four'
+  > Edit
+  </button>
+)}
+      </div>  
                      
                   &nbsp;
                   &nbsp;
@@ -122,5 +211,6 @@ function TodoList() {
     </div>
   );
 }
+
 
 export default TodoList;
