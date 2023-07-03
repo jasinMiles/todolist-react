@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Server from './server'
 import Home from './Home'
 import Local from './Local'
-import Global from './Global'
+import Global from './GLOBAL/Global'
+import TodoList from "./server";
 
 const AppRoutes = () => {
   return (
