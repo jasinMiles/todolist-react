@@ -180,6 +180,22 @@ h2, .form-style{
   margin-top: 50px;
 }
 
+#cancel-button{
+  width: 300px;
+  height: 44px;
+  background: #FEBE00;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
 #submit-button-local{
   width: 270px;
   height: 44px;
